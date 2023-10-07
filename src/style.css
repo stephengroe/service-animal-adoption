@@ -176,7 +176,7 @@ h3 {
 }
 
 .animal-card h3 {
-  color: var(--brand-purple);
+  color: var(--brand-dark-green);
 }
 
 .animal-card p {
@@ -195,7 +195,7 @@ h3 {
 
 .tag-cloud .tag {
   padding: 0.25em 0.75em;
-  background-color: var(--brand-light-green);
+  background-color: var(--brand-purple);
   border-radius: var(--border-radius);
   font-weight: 300;
   color: white;

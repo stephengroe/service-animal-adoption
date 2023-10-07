@@ -21,17 +21,16 @@ generateFilters();
 // Filter data
 function filterAnimals(query) {
   const filteredArray = animalDatabase.filter(animal => {
-    let result = false;
+    const result = [];
     filters.forEach((value, key) => {
       const lowerKey = key.toLowerCase();
       if (animal[lowerKey] && animal[lowerKey] === query[lowerKey]) {
-        console.log(lowerKey);
-        result = true;
+        result.push(true);
       } else {
-        result = false;
+        result.push(false);
       }
     });
-    return result;
+    return result.every(value => value);
   });
   
   return filteredArray;
@@ -45,8 +44,8 @@ function bindFilters() {
       const query = {};
       
       filters.forEach((value, key) => {
-        key = key.toLowerCase();
-        query[key] = e.target.form[key].value;
+        const lowerKey = key.toLowerCase();
+        query[lowerKey] = e.target.form[lowerKey].value;
       });
 
       updateDisplay(filterAnimals(query));
@@ -92,7 +91,7 @@ const sampleAnimals = [
     species: "Dog",
     name: "Bear",
     breed: "Poodle",
-    age: "2",
+    age: "4",
     training: "Emotional Support Animal",
     tags: ["Friendly", "Spayed/neutered", "Anxiety support", "PTSD support"],
     imageUrl: "https://images.pexels.com/photos/3658120/pexels-photo-3658120.jpeg",
