@@ -1,5 +1,7 @@
 import "./style.css";
 import Animal from "./animal";
+import Trainer from "./trainer";
+import Owner from "./owner";
 
 function initializePage() {
   const body = document.querySelector("body");
