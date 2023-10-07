@@ -11,17 +11,16 @@ const sampleTrainers = [
     imageUrl: "https://images.pexels.com/photos/7210458/pexels-photo-7210458.jpeg",
   },
   {
-    name: "Happy Pups",
+    name: "Happy Pups Trainers",
     location: "Phoenix, Arizona",
     imageUrl: "https://images.pexels.com/photos/9632843/pexels-photo-9632843.jpeg",
   },
   {
-    name: "Martín Hernandez",
+    name: "Martin Hernandez",
     location: "Mesa, Arizona",
     imageUrl: "https://images.pexels.com/photos/7210267/pexels-photo-7210267.jpeg",
-  },
+  }
 ];
-
 const sampleAnimals = [
   {
     species: "Dog",
@@ -43,7 +42,6 @@ const sampleAnimals = [
     tags: ["Friendly", "Spayed/neutered", "Anxiety support", "PTSD support"],
     imageUrl: "https://images.pexels.com/photos/3658120/pexels-photo-3658120.jpeg",
   },
-
   {
     species: "Dog",
     gender: "Female",
@@ -74,7 +72,6 @@ const sampleAnimals = [
     tags: ["Friendly", "Spayed/neutered", "Anxiety support", "PTSD support"],
     imageUrl: "https://images.pexels.com/photos/3658120/pexels-photo-3658120.jpeg",
   },
-
   {
     species: "Dog",
     gender: "Female",
@@ -93,7 +90,7 @@ const sampleAnimals = [
     age: "3",
     training: "Certified Emotional Support Animal",
     tags: ["Calm/Playful", " Spayed/neutered", "Enjoys Cuddling", "Supportive"],
-    imageUrl: "",
+    imageUrl: "download.jfif",
   },
   {
     species: "Cat",
@@ -104,7 +101,6 @@ const sampleAnimals = [
     training: "Certified Emotional Support Animal",
     tags: ["Cute", "Playful/Energetic", "Many Kisses", "Attention Seeking", "Happy/Jumpy"],
     imageUrl:"",
-
   },
   {
     species: "Dog",
@@ -114,7 +110,7 @@ const sampleAnimals = [
     age: "7",
     training: "Certified Service Animal",
     tags : ["Friendly", "Affectionate", "Playful/Funny", "Gentle", "Loves Snugs/Kisses"],
-    imageUrl: "",
+    imageUrl: "Bear.png",
   },
   {
     species: "Dog",
@@ -124,8 +120,7 @@ const sampleAnimals = [
     age: "1",
     training: "Certified Emotional Support Animal",
     tags: ["Short Coat", "Good with small dogs", "Great with kids", "Playful/Caring"],
-    imageUrl: " ",
-    
+    imageUrl: "Blackie.png",
   },
   {
     species: "Dog",
@@ -133,9 +128,9 @@ const sampleAnimals = [
     name: "Charlie",
     breed: "Mixed",
     age: "1",
-    training: "Certified Emotional Support Animal",
+    training: "Certifiied Emotional Support Animal",
     tags: ["Sweet/Loving", "Gentle", "Attention lover", "Good Energy", "Adorable"],
-    imageUrl: " ",
+    imageUrl: "Charlie.png",
     },
     {
       species: "Dog",
@@ -145,7 +140,7 @@ const sampleAnimals = [
       age: "1",
       training: "Certified Emotional Support Animal",
       tags: ["Trained", "Listens Well", "Good Temperament", "Obdient", "Loves to Play"],
-      imageUrl:" ",
+      imageUrl:"Coda.png",
     },
     {
       species: "Dog",
@@ -155,7 +150,7 @@ const sampleAnimals = [
       age: "2",
       training: "Certified Service Animal",
       tags: ["Energetic", "Well Trained", "Helpful/Obidient", "Friendly"],
-      imageUrl: "",
+      imageUrl: "Denny.png",
     },
     {
       species: "Dog",
@@ -165,8 +160,7 @@ const sampleAnimals = [
       age: "3",
       training: "Certified Emotional Support Animal",
       tags: ["Cute/Pretty","Unique","Wonderful/Obidient", "Well-Trained", "Great Companion", "Anxiety Support", "Emotional Support"],
-      imageUrl: "",
-
+      imageUrl: "Gigi.png",
     },
     {
       species: "Dog",
@@ -176,7 +170,7 @@ const sampleAnimals = [
       age: "2",
       training: "Certified Service Animal",
       tags: ["Affectionate", "Caring", "Gentle", "Intelligent/Helpful", "Responds Quickly"],
-      imageUrl: " ",
+      imageUrl: "Handsome.png",
     },
     {
       species: "Dog",
@@ -185,18 +179,18 @@ const sampleAnimals = [
       breed: "Labrador Retriever",
       age: "2.5",
       training: "Certified Service Animal",
-      tags: ["Even Tempered", "Friendly", "Loving", "Outgoing", "Agile",],
-      imageUrl: " ",
+      tags: ["Even Tempered", "Friendly", "Loving", "Outgoing", "Agile"],
+      imageUrl:"Loco.png",
     },
     {
       species: "Dog",
       gender: "Female",
-      name: "Lyla", 
+      name: "Lyla",
       breed: "Labrador Retriever",
       age: "2",
       training:"Certified Service Animal",
       tags: ["Kind/Warm", "Loving/Playful", "Cling", "Loves to Play", "Gentle"],
-      imageUrl: " ",
+      imageUrl: "Lyla.png",
     },
     {
       species: "Dog",
@@ -206,7 +200,7 @@ const sampleAnimals = [
       age: "3",
       training: "Certified Emotional Support Animal",
       tags: ["Funny", "Adorable", "Enjoys' Playing", "Playful", "Stubborn/Loving", "Affectionate"],
-      imageUrl: " ",
+      imageUrl: "Oscar.png",
     },
     {
       species: "Dog",
@@ -216,7 +210,7 @@ const sampleAnimals = [
       age: "4",
       training: "Certified Emotional Support Animal",
       tags: ["Lively", "Alert", "Loving", "Cuddles", "Athletic", "Loves to Play"],
-      imageUrl: " ",
+      imageUrl: "Phifi.png",
     },
     {
       species: "Dog",
@@ -225,9 +219,107 @@ const sampleAnimals = [
       breed: "Golden Retriever",
       age: "2",
       training: "Certified Service Animal",
-      tags: ["Friendly/Loving", "PTSD Animal"]       
+      tags: ["Friendly/Loving", "PTSD Animal", "Supportive", "Alert"],
+      imageUrl: "Seargent.png",
+    },
+    {
+      species: "Cat",
+      gender: "Female",
+      name: "Geenie",
+      breed: "Main Coon",
+      age: "3",
+      training: "Certified Emotional Support Animal",
+      tags: ["Gentle/Kind", "Companionship;/partner", "Caring/Loving","Anxiety Support", "Truama Support"],
+      imageUrl: " ",
+    },
+    {
+      species: "Cat",
+      gender: "Male",
+      name: "Henry",
+      breed: "Domestic Short Hair",
+      age: "2",
+      training:"Certified Emotional Support Animal",
+      tags: ["Intelligent", "Careful", "Clingy", "PTSD Support", "Depression Support"],
+      imageUrl: " ",
+    },
+    {
+      species: "Cat",
+      gender: "Male",
+      name: "Squeeky",
+      breed: "Domestic Long Hair",
+      age: "3",
+      training: "Certified Emotional Support Animal",
+      tags: ["Friendly/Playful", "Spayed/ neuterd", "Caring/Gentle", "ADHD Support","Autism Support"],
+      imageUrl: " ",
+    },
+    {
+      species: "Guinea Pig",
+      gender: "Male",
+      name: "Rex",
+      breed: "American Crested Guinea Pig",
+      age: "1",
+      training: "Certified Emotional Support Animal",
+      tags: ["Cute/Cuddly", "Kisses/Nibbles", "Autism Support", "Anxiety Support"],
+      imageUrl: " ",
+    },
+    {
+      species: "Guinea Pig",
+      gender: "Male",
+      name: "Brain",
+      breed: "Pervuian Guinea Pigs",
+      age: "1",
+      training: "Certified Emotional Support Animal",
+      tags: ["Gentle", "Kind", "Loving/Kisses", "ADHD Support"],
+      imageUrl: " ",
+    },
+    {
+      species: "Guinea Pig",
+      gender: "Female",
+      name: "Pinky",
+      breed: "Peruvian Guinea Pigs",
+      age: "1",
+      training: "Certified Emotional Support Animal",
+      tags: ["Gentle", "Supportive","Playful/Cute", "ADHD Support", "Loves Kisses", "Well-Trained"],
+      imageUrl: " ",
+    },
+    {
+      species: "Minature Horse",
+      gender: "Male",
+      name: "Woody",
+      breed: "American Minature House",
+      age: "3",
+      training: "Certified Service Animal",
+      tags: ["Funny", "Adorable", "Supportive", "Kisses/Cuddles","Controlled", "Emotionally Smart", "Disabillity support"],
+      imageUrl:" ",
+    },
+    {
+      species: "Minature House",
+      gender: "Female",
+      name: "Jackie",
+      breed: "American Minature House",
+      age: "2",
+      training: "Certified Service Animal",
+      tags: ["Cute", "Playful/Genuine", "Kisses", "Energetic", "ADHD Support", "Good Control"],
+      imageUrl: " ",
+    },
+    {
+      species: "Minature Horse",
+      gender: "Male",
+      name: "Mini",
+      breed: "American Minature Horse",
+      age: "2",
+      training: "Certified Service Animal",
+      tags: ["Controlled", "Well-Trained", "Playful", "Supportive/Hugs", "ADHD Support", "Anxiety Support"],
+      imageUrl: " ",
+    },
+    {
+      species: "Rabbit",
+      gender: "Male",
+      name: "Sophie",
+      breed: "Mini Lop Rabbit",
+      age: "1",
+      training: "Certified Emotinal Support Animal",
+      tags: ["Cute", "Energetic", "Kisses", "Playful/Loving", "ADHD Support", "Well Controlled"],
+      imageUrl: " ",
     },
 ];
-
-
-export {sampleTrainers, sampleAnimals};
