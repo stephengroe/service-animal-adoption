@@ -10,12 +10,50 @@ const ownerDatabase = [];
 
 function initializePage() {
   const body = document.querySelector("body");
-  const h1 = document.createElement("h1");
 
+  // Create menu bar
+  const navBar = generateNavBar();
+
+  // Create wrapper element
+  const wrapper = document.createElement("div");
+  wrapper.setAttribute("id", "wrapper");
+
+  const h1 = document.createElement("h1");
   h1.textContent = "Welcome to PupAbility!";
 
-  body.append(h1);
+  wrapper.append(h1);
+
+  body.append(navBar, wrapper);
   updateDisplay();
+}
+
+function generateNavBar() {
+  const menuWrapper = document.createElement("div");
+  menuWrapper.setAttribute("id", "nav-bar");
+
+  const logo = document.createElement("div");
+  logo.setAttribute("id", "logo");
+  logo.textContent = "PupAbility";
+
+  const menu = document.createElement("ul");
+  menu.setAttribute("id", "nav-menu");
+
+  const menuList = ["Browse Animals", "Upload an Animal"];
+
+  menuList.forEach(item => {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.setAttribute("href", "#");
+    a.textContent = item;
+
+    li.append(a);
+    menu.append(li);
+  });
+
+  menuWrapper.append(logo, menu);
+
+
+  return menuWrapper;
 }
 
 function updateDisplay(query){

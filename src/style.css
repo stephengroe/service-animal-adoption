@@ -1,9 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;500&family=Young+Serif&display=swap');
+
 :root {
-  font-family: sans-serif;
-  background-color: #ffe3dc;
+  --brand-dark-green: #036D19;
+  --brand-light-green: #78C091;
+  --brand-light-pink: #FFE3DC;
+  --brand-dark-pink: #DBBAAD;
+  --brand-purple: #5C415D;
+
+  --shadow-color: 0deg 0% 63%;
+  --shadow-elevation-low:
+    0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34),
+    0px 0.8px 0.9px -1.2px hsl(var(--shadow-color) / 0.34),
+    0.1px 1.9px 2.1px -2.5px hsl(var(--shadow-color) / 0.34);
+  --shadow-elevation-medium:
+    0px 0.5px 0.6px hsl(var(--shadow-color) / 0.36),
+    0.1px 1.6px 1.8px -0.8px hsl(var(--shadow-color) / 0.36),
+    0.2px 4px 4.5px -1.7px hsl(var(--shadow-color) / 0.36),
+    0.4px 9.7px 10.9px -2.5px hsl(var(--shadow-color) / 0.36);
+  --shadow-elevation-high:
+    0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34),
+    0.1px 2.8px 3.2px -0.4px hsl(var(--shadow-color) / 0.34),
+    0.2px 5.3px 6px -0.7px hsl(var(--shadow-color) / 0.34),
+    0.3px 8.7px 9.8px -1.1px hsl(var(--shadow-color) / 0.34),
+    0.5px 13.8px 15.5px -1.4px hsl(var(--shadow-color) / 0.34),
+    0.8px 21.6px 24.3px -1.8px hsl(var(--shadow-color) / 0.34),
+    1.3px 32.8px 36.9px -2.1px hsl(var(--shadow-color) / 0.34),
+    1.9px 48.4px 54.5px -2.5px hsl(var(--shadow-color) / 0.34);
 }
 
 body {
+  margin: 0;
+  padding: 0;
+  font-family: "Karla", sans-serif;
+  background-color: var(--brand-light-pink);
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Young Serif", serif;
+}
+
+#nav-bar {
+  width: 100%;
+  background-color: white;
+  padding: 1em;
+  display: flex;
+  box-sizing: border-box;
+  box-shadow: var(--shadow-elevation-medium);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#nav-bar #logo {
+  margin-right: auto;
+}
+
+#nav-bar #nav-menu {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5em;
+}
+
+#nav-bar #nav-menu li {
+  display: block;
+}
+
+#nav-bar #nav-menu li a {
+  font-size: 1.1rem;
+  color: var(--brand-dark-green);
+  font-weight: medium;
+  text-decoration: none;
+  transition: all 200ms;
+}
+
+#nav-bar #nav-menu li a:hover {
+  color: var(--brand-light-green);
+  transition: all 200ms;
+}
+
+#wrapper {
   max-width: 80vw;
   background-color: white;
 }
