@@ -13,18 +13,22 @@ const sampleTrainers = [
   {
     name: "Elite Dog Trainers",
     location: "Scottsdale, Arizona",
+    imageUrl: "https://images.pexels.com/photos/7788657/pexels-photo-7788657.jpeg",
   },
   {
     name: "Lisa Smith",
-    location: "Flagstaff, Arizona"
+    location: "Flagstaff, Arizona",
+    imageUrl: "https://images.pexels.com/photos/7210458/pexels-photo-7210458.jpeg",
   },
   {
     name: "Happy Pups Trainers",
-    location: "Phoenix, Arizona"
+    location: "Phoenix, Arizona",
+    imageUrl: "https://images.pexels.com/photos/9632843/pexels-photo-9632843.jpeg",
   },
   {
     name: "Martin Hernandez",
-    location: "Mesa, Arizona"
+    location: "Mesa, Arizona",
+    imageUrl: "https://images.pexels.com/photos/7210267/pexels-photo-7210267.jpeg",
   }
 ];
 
@@ -175,9 +179,12 @@ function updateDisplay(){
   const wrapper = document.querySelector("#wrapper");
 
   const animalContainer = buildAnimalContainer(sampleAnimals);
+
+  const trainerHeader = document.createElement("h2");
+  trainerHeader.textContent = "Featured Trainers";
   const trainerContainer = buildTrainerContainer(sampleTrainers);
 
-  wrapper.append(animalContainer, trainerContainer);
+  wrapper.append(animalContainer, trainerHeader, trainerContainer);
 }
 
 function buildTrainerContainer(array) {
@@ -185,14 +192,20 @@ function buildTrainerContainer(array) {
   container.setAttribute("class", "trainer-container");
 
   array.forEach(trainer => {
-    const trainerDiv = document.createElement("div");
+    const trainerCard = document.createElement("div");
+    trainerCard.setAttribute("class", "trainer-card");
+
+    const trainerPhoto = document.createElement("div");
+    trainerPhoto.setAttribute("class", "photo");
+    trainerPhoto.style.backgroundImage = `url(${trainer.imageUrl})`;
+
     const trainerName = document.createElement("h2");
     trainerName.textContent = trainer.name;
     const trainerLocation = document.createElement("h3");
     trainerLocation.textContent = trainer.location;
 
-    trainerDiv.append(trainerName, trainerLocation);
-    container.append(trainerDiv);
+    trainerCard.append(trainerPhoto, trainerName, trainerLocation);
+    container.append(trainerCard);
   });
 
   return container;
@@ -203,8 +216,8 @@ function buildAnimalContainer(array) {
   container.setAttribute("class", "animal-container");
 
   array.forEach(animal => {
-    const feature = document.createElement("div");
-    feature.setAttribute("class", "animal-feature");
+    const animalCard = document.createElement("div");
+    animalCard.setAttribute("class", "animal-card");
 
     const photo = document.createElement("div");
     photo.setAttribute("class", "photo");
@@ -245,8 +258,8 @@ function buildAnimalContainer(array) {
 
     detailsBox.append(name, training, summary, tagCloud)
 
-    feature.append(photo, detailsBox);
-    container.append(feature);
+    animalCard.append(photo, detailsBox);
+    container.append(animalCard);
   });
 
   return container;

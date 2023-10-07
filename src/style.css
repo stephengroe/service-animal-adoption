@@ -98,10 +98,10 @@ h3 {
 .animal-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
+  gap: 2rem;
 }
 
-.animal-container .animal-feature {
+.animal-container .animal-card {
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
@@ -115,14 +115,14 @@ h3 {
   transition: all var(--transition-speed);
 }
 
-.animal-container .animal-feature:hover {
+.animal-container .animal-card:hover {
   cursor: pointer;
   box-shadow: var(--shadow-elevation-medium);
 
   transition: all var(--transition-speed);
 }
 
-.animal-feature .photo {
+.animal-card .photo {
   width: 100%;
   height: 300px;
 
@@ -132,7 +132,7 @@ h3 {
   background-size: cover;
 }
 
-.animal-feature .details-box {
+.animal-card .details-box {
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
@@ -140,15 +140,15 @@ h3 {
   padding: 1.25em;
 }
 
-.animal-feature h2, .animal-feature h3 {
+.animal-card h2, .animal-card h3 {
   margin: 0;
 }
 
-.animal-feature h3 {
+.animal-card h3 {
   color: var(--brand-purple);
 }
 
-.animal-feature p {
+.animal-card p {
   font-weight: 300;
 }
 
@@ -171,6 +171,41 @@ h3 {
   font-size: 0.9rem;
 }
 
+/* Trainer container */
+
+.trainer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.trainer-container .trainer-card {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.trainer-card .photo {
+  width: 150px;
+  height: 150px;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-origin: center;
+  background-size: cover;
+
+  border: 0.5rem solid var(--brand-dark-pink);
+  border-radius: 100%;
+}
+
+.trainer-card h2 {
+  text-align: center;
+}
+
+
+
+/* Other styles */
 
 h1 {
   text-align: center;
