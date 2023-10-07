@@ -2,13 +2,10 @@ import "./style.css";
 import Animal from "./animal";
 import Trainer from "./trainer";
 import {sampleTrainers, sampleAnimals} from "./sample-data";
-import Owner from "./owner";
 
 // Create "database" global variables
 const animalDatabase = [];
 const trainerDatabase = [];
-const ownerDatabase = [];
-
 // Create map with filtering options
 const filters = new Map();
 
@@ -50,7 +47,7 @@ function bindFilters() {
         query[lowerKey] = e.target.form[lowerKey].value;
       });
 
-      updateDisplay(filterAnimals(query));
+      renderAnimalList(filterAnimals(query));
     });
   });
 }
@@ -68,11 +65,11 @@ function generateSampleData() {
 }
 
 // Render functions
-function initializePage() {
+function renderPage() {
   const body = document.querySelector("body");
 
   // Create elements
-  const navBar = generateNavBar();
+  const navBar = generateNavBar(true);
   const footer = generateFooter();
 
   // Create wrapper element
@@ -82,7 +79,7 @@ function initializePage() {
   body.append(navBar, wrapper, footer);
 }
 
-function generateNavBar() {
+function generateNavBar(hasFilterBar) {
   const topBarWrapper = document.createElement("div");
   topBarWrapper.setAttribute("id", "top-bar");
 
@@ -109,7 +106,21 @@ function generateNavBar() {
   });
 
   menuWrapper.append(logo, menu);
-  const filterBar = generateFilterBar();
+
+  let filterBar;
+
+  if (hasFilterBar) {
+    filterBar = generateFilterBar();
+  } else {
+    filterBar = document.createElement("div");
+    filterBar.setAttribute("id", "filter-bar");
+    
+    const returnButton = document.createElement("button");
+    returnButton.textContent = "Back to results";
+
+    filterBar.append(returnButton);
+  }
+  
   topBarWrapper.append(menuWrapper, filterBar);
 
   return topBarWrapper;
@@ -171,7 +182,7 @@ function generateFooter() {
   return footer;
 }
 
-function updateDisplay(animalArray){
+function renderAnimalList(animalArray){
   const wrapper = document.querySelector("#wrapper");
 
   // Clear wrapper
@@ -194,6 +205,7 @@ function updateDisplay(animalArray){
   const trainerContainer = buildTrainerContainer(sampleTrainers);
 
   wrapper.append(animalContainer, trainerHeader, trainerContainer);
+  bindAnimalCards();
 }
 
 function buildTrainerContainer(array) {
@@ -227,6 +239,7 @@ function buildAnimalContainer(array) {
   array.forEach(animal => {
     const animalCard = document.createElement("div");
     animalCard.setAttribute("class", "animal-card");
+    animalCard.dataset.animalId = animal.id;
 
     const photo = document.createElement("div");
     photo.setAttribute("class", "photo");
@@ -274,8 +287,18 @@ function buildAnimalContainer(array) {
   return container;
 }
 
+function bindAnimalCards() {
+  const animalCards = document.querySelectorAll(".animal-card");
+  console.log(animalCards);
+  animalCards.forEach(card => {
+    card.addEventListener("click", (e) => {
+      console.log(e.currentTarget.dataset.animalId);
+    });
+  });
+}
+
 // Initial functions
 generateSampleData();
-initializePage();
-updateDisplay(animalDatabase);
+renderPage();
+renderAnimalList(animalDatabase);
 bindFilters();

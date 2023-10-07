@@ -5,8 +5,4 @@ export default class Trainer {
     this.location = location;
     this.animals = [];
   }
-  addAnimal(details) {
-    const animal = new Animal(details);
-  }
-
 }
