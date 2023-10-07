@@ -15,10 +15,14 @@ function generateFilters(){
   filters.set("Species", ["Dog", "Cat", "Miniature Horse"]);
   filters.set("Training", ["Certified Support Animal", "Emotional Support Animal"]);
   filters.set("Age", ["0-1 years old", "1-3 years old", "3-5 years old", "5-10 years old", "10+ years old"]);
-  
-
 }
 generateFilters();
+
+// Filter data
+function filterAnimals() {
+
+}
+
 
 // Generate sample data
 const sampleTrainers = [
@@ -121,11 +125,6 @@ function initializePage() {
   // Create wrapper element
   const wrapper = document.createElement("div");
   wrapper.setAttribute("id", "wrapper");
-
-  const h1 = document.createElement("h1");
-  h1.textContent = "Welcome to PupAbility!";
-
-  wrapper.append(h1);
 
   body.append(navBar, wrapper, footer);
 }
