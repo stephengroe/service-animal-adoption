@@ -50,7 +50,7 @@ h3 {
 #top-bar {
   position: sticky;
   margin-bottom: 3rem;
-  box-shadow: var(--shadow-elevation-medium);
+  /* box-shadow: var(--shadow-elevation-medium); */
   box-sizing: border-box;
   width: 100%;
   top: 0;
@@ -58,7 +58,7 @@ h3 {
 }
 
 #nav-bar {
-  background-color: white;
+  background-color: var(--brand-light-pink);
   padding: 1.5em 2.5em;
   display: flex;
 }
@@ -88,15 +88,8 @@ h3 {
 
 #nav-bar .nav-menu li a {
   font-size: 1.1rem;
-  color: var(--brand-dark-green);
-  font-weight: medium;
+  color: var(--brand-purple);
   text-decoration: none;
-  transition: all var(--transition-speed);
-}
-
-#nav-bar .nav-menu li a:hover {
-  color: var(--brand-light-green);
-  transition: all var(--transition-speed);
 }
 
 #filter-bar {
@@ -109,6 +102,18 @@ h3 {
   flex-flow: row;
   justify-content: center;
   gap: 5em;
+}
+
+form#filter-bar::after {
+  width: 120%;
+  content: '';
+  border-radius: 100%;
+  background-color: var(--brand-dark-green);
+  position: absolute;
+  bottom: -30px;
+  height: 60px;
+  box-shadow: var(--shadow-elevation-low);
+  z-index: -999;
 }
 
 #filter-bar .filter-container {
@@ -330,10 +335,24 @@ h2 {
   width: 100%;
   background-color: var(--brand-purple);
   color: white;
-  padding: 5rem;
   display: flex;
+  justify-content: center;
   box-sizing: border-box;
   position: relative;
+  min-height: 100px;
+}
+
+#footer::before {
+  width: 120%;
+  content: '';
+  border-radius: 100%;
+  background-color: var(--brand-purple);
+  position: absolute;
+  top: -30px;
+  height: 60px;
+  box-shadow: var(--shadow-elevation-medium);
+  z-index: -999;
+  display: block;
 }
 
 #footer .logo {

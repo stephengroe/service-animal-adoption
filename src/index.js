@@ -142,7 +142,7 @@ function generateFooter() {
   const year = new Date().getFullYear()
   copyright.textContent = `© ${year} | Made with ♥ at Hacks for Humanity 2023`;
 
-  footer.append(logo, menu, copyright);
+  footer.append(copyright);
 
   return footer;
 }
