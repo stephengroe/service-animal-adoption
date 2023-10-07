@@ -11,16 +11,17 @@ const sampleTrainers = [
     imageUrl: "https://images.pexels.com/photos/7210458/pexels-photo-7210458.jpeg",
   },
   {
-    name: "Happy Pups Trainers",
+    name: "Happy Pups",
     location: "Phoenix, Arizona",
     imageUrl: "https://images.pexels.com/photos/9632843/pexels-photo-9632843.jpeg",
   },
   {
-    name: "Martin Hernandez",
+    name: "Martín Hernandez",
     location: "Mesa, Arizona",
     imageUrl: "https://images.pexels.com/photos/7210267/pexels-photo-7210267.jpeg",
-  }
+  },
 ];
+
 const sampleAnimals = [
   {
     species: "Dog",
@@ -90,7 +91,7 @@ const sampleAnimals = [
     age: "3",
     training: "Certified Emotional Support Animal",
     tags: ["Calm/Playful", " Spayed/neutered", "Enjoys Cuddling", "Supportive"],
-    imageUrl: "download.jfif",
+    imageUrl: "",
   },
   {
     species: "Cat",
@@ -120,7 +121,7 @@ const sampleAnimals = [
     age: "1",
     training: "Certified Emotional Support Animal",
     tags: ["Short Coat", "Good with small dogs", "Great with kids", "Playful/Caring"],
-    imageUrl: "Blackie.png",
+    imageUrl: "blackie.png",
   },
   {
     species: "Dog",
@@ -323,3 +324,5 @@ const sampleAnimals = [
       imageUrl: " ",
     },
 ];
+
+export { sampleTrainers, sampleAnimals };

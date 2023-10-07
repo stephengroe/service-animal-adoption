@@ -213,6 +213,12 @@ h3 {
 
 /* Trainer container */
 
+.trainer-info {
+  display: flex;
+  flex-flow: row;
+  gap: 2rem;
+}
+
 .trainer-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -244,8 +250,9 @@ h3 {
 
 /* Individual container */
 .detail-wrapper {
-  display: flex;
-  flex-flow: row;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
   justify-content: space-between;
   gap: 2em;
   min-height: 60vh;
@@ -256,7 +263,6 @@ h3 {
 }
 
 .detail-wrapper .photo {
-  width: 50%;
   min-height: 100%;
 
   background-repeat: no-repeat;
@@ -267,12 +273,22 @@ h3 {
   box-shadow: var(--shadow-elevation-medium);
 }
 
+.detail-block .summary-box {
+  text-align: center;
+}
+
+.detail-block .description {
+  max-width: 75%;
+  margin: 1rem auto;
+}
+
 .detail-block .tag-cloud {
   width: 75%;
   margin: auto;
 }
 
-.trainer-card {
+.trainer-card,
+.contact-card {
   background-color: white;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-elevation-low);

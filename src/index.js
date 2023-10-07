@@ -294,7 +294,7 @@ function renderDetailPage(animalId) {
   photo.setAttribute("class", "photo");
   photo.style.backgroundImage = `url(${animal.imageUrl})`;
 
-  // Add text details on the dog
+  // Add text details on the animal
   const detailBlock = document.createElement("div");
   detailBlock.setAttribute("class", "detail-block");
 
@@ -327,11 +327,33 @@ function renderDetailPage(animalId) {
   summary.setAttribute("class", "summary-box");
   summary.textContent = `${species} | ${animal.age} years old`;
 
-  // Trainer card
-  const trainer = Storage.trainerDatabase.find(trainer => trainer.id === animal.trainerId);
-  const trainerCard = buildTrainerCard(trainer);
+  const description = document.createElement("p");
+  description.setAttribute("class", "description");
+  description.textContent = "This cute canine is ready to provide the helpful companionship you need. He has four years of exensive training and experience as an emotional support animal. He's friendly and calm, and loves to be around kids and other dogs.";
 
-  detailBlock.append(name, training, tagCloud, summary, trainerCard);
+  // Trainer card box
+  const trainer = Storage.trainerDatabase.find(trainer => trainer.id === animal.trainerId);
+
+  const trainerInfo = document.createElement("div");
+  trainerInfo.setAttribute("class", "trainer-info");
+
+  const contact = document.createElement("div");
+  contact.setAttribute("class", "contact-card");
+
+  const price = document.createElement("p");
+  price.setAttribute("class", "price");
+  price.textContent = "$25,000";
+
+  const contactButton = document.createElement("button");
+  contactButton.setAttribute("class", "contact-button");
+  contactButton.textContent = `Get in touch with ${trainer.name}`;
+
+  contact.append(price, contactButton);
+
+  const trainerCard = buildTrainerCard(trainer);
+  trainerInfo.append(contact, trainerCard);
+
+  detailBlock.append(name, training, summary, description, tagCloud, trainerInfo);
   detailWrapper.append(photo, detailBlock);
   wrapper.append(detailWrapper);
 }
