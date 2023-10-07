@@ -1,5 +1,6 @@
 export default class Animal {
-  generator({name}) {
+  constructor({name}) {
+    this.id = Date.now() + Math.round(Math.random * 10000)
     this.name = name;
   }
 }
