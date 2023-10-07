@@ -183,9 +183,8 @@ function generateFooter() {
 }
 
 function renderAnimalList(animalArray){
-  const wrapper = document.querySelector("#wrapper");
-
   // Clear wrapper
+  const wrapper = document.querySelector("#wrapper");
   while(wrapper.firstChild) {
     wrapper.removeChild(wrapper.firstChild);
   }
@@ -289,12 +288,66 @@ function buildAnimalContainer(array) {
 
 function bindAnimalCards() {
   const animalCards = document.querySelectorAll(".animal-card");
-  console.log(animalCards);
   animalCards.forEach(card => {
     card.addEventListener("click", (e) => {
-      console.log(e.currentTarget.dataset.animalId);
+      renderDetailPage(e.currentTarget.dataset.animalId);
     });
   });
+}
+
+// Render detail page
+function renderDetailPage(animalId) {
+  // Clear wrapper
+  const wrapper = document.querySelector("#wrapper");
+  while(wrapper.firstChild) {
+    wrapper.removeChild(wrapper.firstChild);
+  }
+
+  const animal = animalDatabase.find(entry => entry.id === Number(animalId));
+
+  const detailWrapper = document.createElement("div");
+  detailWrapper.setAttribute("class", "detail-wrapper");
+
+  const photo = document.createElement("div");
+  photo.setAttribute("class", "photo");
+  photo.style.backgroundImage = `url(${animal.imageUrl})`;
+
+  // Add text details on the dog
+  const detailBlock = document.createElement("div");
+  detailBlock.setAttribute("class", "details-block");
+
+  const name = document.createElement("h1");
+  name.textContent = animal.name;
+
+  const training = document.createElement("h2");
+  training.setAttribute("class", "training");
+  training.textContent = animal.training;
+
+  // Specify breed if available, otherwise leave it blank
+  let species;
+  if (animal.breed !== null) {
+    species = `${animal.species} (${animal.breed})`;
+  } else {
+    species = animal.species;
+  }
+
+  const summary = document.createElement("p");
+  summary.setAttribute("class", "summary-box");
+  summary.textContent = `${species} | ${animal.age} years old`;
+
+  const tagCloud = document.createElement("div");
+  tagCloud.setAttribute("class", "tag-cloud");
+  
+  animal.tags.forEach(tag => {
+    const tagDiv = document.createElement("div");
+    tagDiv.setAttribute("class", "tag");
+    tagDiv.textContent = tag;
+    tagCloud.append(tagDiv);
+  });
+
+  detailBlock.append(name, training, summary, tagCloud)
+  detailWrapper.append(photo, detailBlock);
+  wrapper.append(detailWrapper);
 }
 
 // Initial functions

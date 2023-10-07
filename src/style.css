@@ -232,6 +232,17 @@ h3 {
   text-align: center;
 }
 
+/* Individual container */
+.detail-wrapper {
+  display: flex;
+  flex: row;
+}
+
+.detail-wrapper photo {
+  
+}
+
+
 
 
 /* Other styles */
