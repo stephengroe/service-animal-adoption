@@ -12,7 +12,7 @@
 
   --transition-speed: 250ms;
 
-  --shadow-color: 0deg 0% 63%;
+  --shadow-color: 12deg 31% 60%;
   --shadow-elevation-low:
     0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34),
     0px 0.8px 0.9px -1.2px hsl(var(--shadow-color) / 0.34),
@@ -47,17 +47,20 @@ h3 {
   font-family: "Young Serif", serif;
 }
 
-#nav-bar {
-  width: 100%;
-  background-color: white;
-  padding: 2em 3em;
-  display: flex;
-  box-sizing: border-box;
-  box-shadow: var(--shadow-elevation-medium);
+#top-bar {
   position: sticky;
+  margin-bottom: 3rem;
+  box-shadow: var(--shadow-elevation-medium);
+  box-sizing: border-box;
+  width: 100%;
   top: 0;
   left: 0;
-  margin-bottom: 3rem;
+}
+
+#nav-bar {
+  background-color: white;
+  padding: 1.5em;
+  display: flex;
 }
 
 #nav-bar .logo {
@@ -86,6 +89,17 @@ h3 {
 #nav-bar .nav-menu li a:hover {
   color: var(--brand-light-green);
   transition: all var(--transition-speed);
+}
+
+#filter-bar {
+  background-color: var(--brand-dark-green);
+  padding: 1em;
+  color: white;
+  align-items: center;
+
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
 }
 
 #wrapper {

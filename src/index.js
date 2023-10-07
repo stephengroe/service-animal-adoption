@@ -8,6 +8,15 @@ const animalDatabase = [];
 const trainerDatabase = [];
 const ownerDatabase = [];
 
+// Create map with filtering options
+const filters = new Map();
+
+function generateFilters(){
+  filters.set("Species", ["Dog", "Cat", "Miniature Horse"]);
+  filters.set("Service", ["Certified Support Animal", "Emotional Support Animal"]);
+}
+generateFilters();
+
 // Generate sample data
 const sampleTrainers = [
   {
@@ -119,6 +128,9 @@ function initializePage() {
 }
 
 function generateNavBar() {
+  const topBarWrapper = document.createElement("div");
+  topBarWrapper.setAttribute("id", "top-bar");
+
   const menuWrapper = document.createElement("div");
   menuWrapper.setAttribute("id", "nav-bar");
 
@@ -143,8 +155,37 @@ function generateNavBar() {
 
   menuWrapper.append(logo, menu);
 
+  const filterWrapper = document.createElement("div");
+  filterWrapper.setAttribute("id", "filter-bar");
+  filterWrapper.append(generateFilterBar());
 
-  return menuWrapper;
+  topBarWrapper.append(menuWrapper, filterWrapper);
+
+  return topBarWrapper;
+}
+
+function generateFilterBar() {
+  const filterBar = document.createElement("div");
+  filterBar.setAttribute("class", "filter-bar");
+
+  filters.forEach((options, filter) => {
+    const label = document.createElement("label");
+    label.setAttribute("for", filter.toLowerCase());
+    label.textContent = filter;
+
+    const filterDropdown = document.createElement("select");
+    filterDropdown.setAttribute("id", filter.toLowerCase());
+
+    options.forEach(option => {
+      const optionElement = document.createElement("option");
+      optionElement.textContent = option;
+      filterDropdown.append(optionElement);
+    });
+    
+    filterBar.append(label, filterDropdown);
+  });
+
+  return filterBar;
 }
 
 function generateFooter() {
