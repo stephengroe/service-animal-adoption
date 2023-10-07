@@ -13,7 +13,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: "PupAbility",
-      favicon: "./src/images/favicon.gif",
+      favicon: "./src/images/favicon.ico",
     }),
   ],
   module: {
