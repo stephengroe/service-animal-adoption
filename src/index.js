@@ -54,7 +54,7 @@ function renderPage() {
   body.append(navBar, wrapper, footer);
 }
 
-function generateNavBar(hasFilterBar) {
+function generateNavBar() {
   const topBarWrapper = document.createElement("div");
   topBarWrapper.setAttribute("id", "top-bar");
 
@@ -81,21 +81,8 @@ function generateNavBar(hasFilterBar) {
   });
 
   menuWrapper.append(logo, menu);
+  const filterBar = generateFilterBar();
 
-  let filterBar;
-
-  if (hasFilterBar) {
-    filterBar = generateFilterBar();
-  } else {
-    filterBar = document.createElement("div");
-    filterBar.setAttribute("id", "filter-bar");
-    
-    const returnButton = document.createElement("button");
-    returnButton.textContent = "Back to results";
-
-    filterBar.append(returnButton);
-  }
-  
   topBarWrapper.append(menuWrapper, filterBar);
 
   return topBarWrapper;
@@ -277,6 +264,18 @@ function bindAnimalCards() {
 
 // Render detail page
 function renderDetailPage(animalId) {
+  // Change filter to back button
+  const filterBar = document.querySelector("#filter-bar");
+
+  while(filterBar.firstChild) {
+    filterBar.removeChild(filterBar.firstChild);
+  }
+  
+  const backButton = document.createElement("button");
+  backButton.setAttribute("id", "back-button");
+  backButton.textContent = "Back to results";
+  filterBar.append(backButton);
+
   // Clear wrapper
   const wrapper = document.querySelector("#wrapper");
   while(wrapper.firstChild) {

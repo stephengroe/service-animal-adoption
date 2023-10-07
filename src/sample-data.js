@@ -11,15 +11,15 @@ const sampleTrainers = [
     imageUrl: "https://images.pexels.com/photos/7210458/pexels-photo-7210458.jpeg",
   },
   {
-    name: "Happy Pups Trainers",
+    name: "Happy Pups",
     location: "Phoenix, Arizona",
     imageUrl: "https://images.pexels.com/photos/9632843/pexels-photo-9632843.jpeg",
   },
   {
-    name: "Martin Hernandez",
+    name: "Martín Hernandez",
     location: "Mesa, Arizona",
     imageUrl: "https://images.pexels.com/photos/7210267/pexels-photo-7210267.jpeg",
-  }
+  },
 ];
 
 const sampleAnimals = [
@@ -94,7 +94,7 @@ const sampleAnimals = [
     training: "Certified Emotional Support Animal",
     tags: ["Calm/Playful", " Spayed/neutered", "Enjoys Cuddling", "Supportive"],
     imageUrl: "",
-  }
+  },
   {
     species: "Cat",
     gender: "Female",
@@ -105,7 +105,7 @@ const sampleAnimals = [
     tags: ["Cute", "Playful/Energetic", "Many Kisses", "Attention Seeking", "Happy/Jumpy"],
     imageUrl:"",
 
-  }
+  },
   {
     species: "Dog",
     gender: "Male",
@@ -115,7 +115,7 @@ const sampleAnimals = [
     training: "Certified Service Animal",
     tags : ["Friendly", "Affectionate", "Playful/Funny", "Gentle", "Loves Snugs/Kisses"],
     imageUrl: "",
-  }
+  },
   {
     species: "Dog",
     gender: "Female",
@@ -126,17 +126,17 @@ const sampleAnimals = [
     tags: ["Short Coat", "Good with small dogs", "Great with kids", "Playful/Caring"],
     imageUrl: " ",
     
-  }
+  },
   {
     species: "Dog",
     gender: "Male",
     name: "Charlie",
     breed: "Mixed",
     age: "1",
-    training: "Certifiied Emotional Support Animal",
+    training: "Certified Emotional Support Animal",
     tags: ["Sweet/Loving", "Gentle", "Attention lover", "Good Energy", "Adorable"],
     imageUrl: " ",
-    }
+    },
     {
       species: "Dog",
       gender: "Male",
@@ -146,7 +146,7 @@ const sampleAnimals = [
       training: "Certified Emotional Support Animal",
       tags: ["Trained", "Listens Well", "Good Temperament", "Obdient", "Loves to Play"],
       imageUrl:" ",
-    }
+    },
     {
       species: "Dog",
       gender: "Male",
@@ -156,7 +156,7 @@ const sampleAnimals = [
       training: "Certified Service Animal",
       tags: ["Energetic", "Well Trained", "Helpful/Obidient", "Friendly"],
       imageUrl: "",
-    }
+    },
     {
       species: "Dog",
       gender: "Female",
@@ -167,7 +167,7 @@ const sampleAnimals = [
       tags: ["Cute/Pretty","Unique","Wonderful/Obidient", "Well-Trained", "Great Companion", "Anxiety Support", "Emotional Support"],
       imageUrl: "",
 
-    }
+    },
     {
       species: "Dog",
       gender: "Male",
@@ -177,7 +177,7 @@ const sampleAnimals = [
       training: "Certified Service Animal",
       tags: ["Affectionate", "Caring", "Gentle", "Intelligent/Helpful", "Responds Quickly"],
       imageUrl: " ",
-    }
+    },
     {
       species: "Dog",
       gender: "Male",
@@ -185,9 +185,9 @@ const sampleAnimals = [
       breed: "Labrador Retriever",
       age: "2.5",
       training: "Certified Service Animal",
-      tags: ["Even Tempered", "Friendly", "Loving", "Outgoing", "Agile",]
-      imageUrl:" ",
-    }
+      tags: ["Even Tempered", "Friendly", "Loving", "Outgoing", "Agile",],
+      imageUrl: " ",
+    },
     {
       species: "Dog",
       gender: "Female",
@@ -197,7 +197,7 @@ const sampleAnimals = [
       training:"Certified Service Animal",
       tags: ["Kind/Warm", "Loving/Playful", "Cling", "Loves to Play", "Gentle"],
       imageUrl: " ",
-    }
+    },
     {
       species: "Dog",
       gender: "Male",
@@ -207,7 +207,7 @@ const sampleAnimals = [
       training: "Certified Emotional Support Animal",
       tags: ["Funny", "Adorable", "Enjoys' Playing", "Playful", "Stubborn/Loving", "Affectionate"],
       imageUrl: " ",
-    }
+    },
     {
       species: "Dog",
       gender: "Female",
@@ -217,7 +217,7 @@ const sampleAnimals = [
       training: "Certified Emotional Support Animal",
       tags: ["Lively", "Alert", "Loving", "Cuddles", "Athletic", "Loves to Play"],
       imageUrl: " ",
-    }
+    },
     {
       species: "Dog",
       gender: "Male",
@@ -225,8 +225,8 @@ const sampleAnimals = [
       breed: "Golden Retriever",
       age: "2",
       training: "Certified Service Animal",
-      tags: ["Friendly/Loving", "PTSD Animal", ""]       
-    }
+      tags: ["Friendly/Loving", "PTSD Animal"]       
+    },
 ];
 
 

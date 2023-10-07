@@ -138,6 +138,7 @@ h3 {
   justify-content: flex-start;
   align-items: center;
   overflow: hidden;
+  text-align: center;
 
   border-radius: var(--border-radius);
   background-color: white;
@@ -146,7 +147,8 @@ h3 {
   transition: all var(--transition-speed);
 }
 
-.animal-container .animal-card:hover {
+.animal-container .animal-card:hover,
+.trainer-card:hover {
   cursor: pointer;
   box-shadow: var(--shadow-elevation-medium);
 
@@ -209,14 +211,15 @@ h3 {
   gap: 2rem;
 }
 
-.trainer-container .trainer-card {
+.trainer-card {
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
 }
 
-.trainer-card .photo {
+.trainer-card .photo,
+.detail-wrapper .trainer-card .photo {
   width: 150px;
   height: 150px;
 
@@ -224,7 +227,6 @@ h3 {
   background-position: center;
   background-size: cover;
 
-  border: 0.5rem solid var(--brand-dark-pink);
   border-radius: 100%;
 }
 
@@ -260,6 +262,27 @@ h3 {
 .detail-block .tag-cloud {
   width: 75%;
   margin: auto;
+}
+
+.trainer-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-elevation-low);
+  padding: 1em;
+}
+
+.trainer-card h2 {
+  margin-bottom: 0px;
+}
+
+button#back-button {
+  font-size: 1em;
+  background: none;
+  color: white;
+  border-radius: var(--border-radius);
+  padding: 0.5em 1em;
+  cursor: pointer;
+  border: none;
 }
 
 
