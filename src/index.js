@@ -13,7 +13,10 @@ const filters = new Map();
 
 function generateFilters(){
   filters.set("Species", ["Dog", "Cat", "Miniature Horse"]);
-  filters.set("Service", ["Certified Support Animal", "Emotional Support Animal"]);
+  filters.set("Training", ["Certified Support Animal", "Emotional Support Animal"]);
+  filters.set("Age", ["0-1 years old", "1-3 years old", "3-5 years old", "5-10 years old", "10+ years old"]);
+  
+
 }
 generateFilters();
 
@@ -154,21 +157,20 @@ function generateNavBar() {
   });
 
   menuWrapper.append(logo, menu);
-
-  const filterWrapper = document.createElement("div");
-  filterWrapper.setAttribute("id", "filter-bar");
-  filterWrapper.append(generateFilterBar());
-
-  topBarWrapper.append(menuWrapper, filterWrapper);
+  const filterBar = generateFilterBar();
+  topBarWrapper.append(menuWrapper, filterBar);
 
   return topBarWrapper;
 }
 
 function generateFilterBar() {
   const filterBar = document.createElement("div");
-  filterBar.setAttribute("class", "filter-bar");
+  filterBar.setAttribute("id", "filter-bar");
 
   filters.forEach((options, filter) => {
+    const container = document.createElement("div");
+    container.setAttribute("class", "filter-container");
+
     const label = document.createElement("label");
     label.setAttribute("for", filter.toLowerCase());
     label.textContent = filter;
@@ -182,7 +184,8 @@ function generateFilterBar() {
       filterDropdown.append(optionElement);
     });
     
-    filterBar.append(label, filterDropdown);
+    container.append(label, filterDropdown);
+    filterBar.append(container);
   });
 
   return filterBar;

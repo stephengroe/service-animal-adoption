@@ -93,13 +93,30 @@ h3 {
 
 #filter-bar {
   background-color: var(--brand-dark-green);
-  padding: 1em;
+  padding: 1em 10vw;
   color: white;
   align-items: center;
 
   display: flex;
   flex-flow: row;
-  justify-content: space-around;
+  justify-content: flex-start;
+  gap: 2em;
+}
+
+#filter-bar .filter-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 0.25em;
+}
+
+.filter-container select {
+  background-color: white;
+  color: black;
+  font-size: 1em;
+  text-align: center;
+  padding: 0.5em;
+  border-radius: 5px;
 }
 
 #wrapper {
