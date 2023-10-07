@@ -235,13 +235,32 @@ h3 {
 /* Individual container */
 .detail-wrapper {
   display: flex;
-  flex: row;
+  flex-flow: row;
+  justify-content: space-between;
+  gap: 2em;
+  min-height: 60vh;
 }
 
-.detail-wrapper photo {
-  
+.detail-wrapper h2 {
+  color: var(--brand-dark-green);
 }
 
+.detail-wrapper .photo {
+  width: 50%;
+  min-height: 100%;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-elevation-medium);
+}
+
+.detail-block .tag-cloud {
+  width: 75%;
+  margin: auto;
+}
 
 
 

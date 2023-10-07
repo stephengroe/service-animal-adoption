@@ -2,26 +2,13 @@ import "./style.css";
 import Animal from "./animal";
 import Trainer from "./trainer";
 import {sampleTrainers, sampleAnimals} from "./sample-data";
-
-// Create "database" global variables
-const animalDatabase = [];
-const trainerDatabase = [];
-// Create map with filtering options
-const filters = new Map();
-
-function generateFilters(){
-  filters.set("Species", ["Dog", "Cat", "Miniature Horse"]);
-  filters.set("Training", ["Certified Service Animal", "Emotional Support Animal"]);
-  filters.set("Age", ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]);
-  filters.set("Gender", ["Male", "Female"]);
-}
-generateFilters();
+import Storage from "./storage";
 
 // Filter data
 function filterAnimals(query) {
-  const filteredArray = animalDatabase.filter(animal => {
+  const filteredArray = Storage.animalDatabase.filter(animal => {
     const result = [];
-    filters.forEach((value, key) => {
+    Storage.filters.forEach((value, key) => {
       const lowerKey = key.toLowerCase();
       if (animal[lowerKey] && animal[lowerKey] === query[lowerKey]) {
         result.push(true);
@@ -42,25 +29,13 @@ function bindFilters() {
     dropdown.addEventListener("change", (e) => {
       const query = {};
       
-      filters.forEach((value, key) => {
+      Storage.filters.forEach((value, key) => {
         const lowerKey = key.toLowerCase();
         query[lowerKey] = e.target.form[lowerKey].value;
       });
 
       renderAnimalList(filterAnimals(query));
     });
-  });
-}
-
-function generateSampleData() {
-  sampleTrainers.forEach(trainer => {
-    const newTrainer = new Trainer(trainer);
-    trainerDatabase.push(newTrainer);
-  });
-
-  sampleAnimals.forEach(animal => {
-    const newAnimal = new Animal(animal);
-    animalDatabase.push(newAnimal);
   });
 }
 
@@ -130,7 +105,7 @@ function generateFilterBar() {
   const filterBar = document.createElement("form");
   filterBar.setAttribute("id", "filter-bar");
 
-  filters.forEach((options, filter) => {
+  Storage.filters.forEach((options, filter) => {
     const container = document.createElement("div");
     container.setAttribute("class", "filter-container");
 
@@ -212,23 +187,28 @@ function buildTrainerContainer(array) {
   container.setAttribute("class", "trainer-container");
 
   array.forEach(trainer => {
-    const trainerCard = document.createElement("div");
-    trainerCard.setAttribute("class", "trainer-card");
-
-    const trainerPhoto = document.createElement("div");
-    trainerPhoto.setAttribute("class", "photo");
-    trainerPhoto.style.backgroundImage = `url(${trainer.imageUrl})`;
-
-    const trainerName = document.createElement("h2");
-    trainerName.textContent = trainer.name;
-    const trainerLocation = document.createElement("h3");
-    trainerLocation.textContent = trainer.location;
-
-    trainerCard.append(trainerPhoto, trainerName, trainerLocation);
-    container.append(trainerCard);
+    container.append(buildTrainerCard(trainer));
   });
 
   return container;
+}
+
+function buildTrainerCard(trainer) {
+  const trainerCard = document.createElement("div");
+  trainerCard.setAttribute("class", "trainer-card");
+
+  const trainerPhoto = document.createElement("div");
+  trainerPhoto.setAttribute("class", "photo");
+  trainerPhoto.style.backgroundImage = `url(${trainer.imageUrl})`;
+
+  const trainerName = document.createElement("h2");
+  trainerName.textContent = trainer.name;
+  const trainerLocation = document.createElement("p");
+  trainerLocation.textContent = trainer.location;
+
+  trainerCard.append(trainerPhoto, trainerName, trainerLocation);
+
+  return trainerCard;
 }
 
 function buildAnimalContainer(array) {
@@ -303,7 +283,7 @@ function renderDetailPage(animalId) {
     wrapper.removeChild(wrapper.firstChild);
   }
 
-  const animal = animalDatabase.find(entry => entry.id === Number(animalId));
+  const animal = Storage.animalDatabase.find(entry => entry.id === Number(animalId));
 
   const detailWrapper = document.createElement("div");
   detailWrapper.setAttribute("class", "detail-wrapper");
@@ -314,7 +294,7 @@ function renderDetailPage(animalId) {
 
   // Add text details on the dog
   const detailBlock = document.createElement("div");
-  detailBlock.setAttribute("class", "details-block");
+  detailBlock.setAttribute("class", "detail-block");
 
   const name = document.createElement("h1");
   name.textContent = animal.name;
@@ -331,10 +311,6 @@ function renderDetailPage(animalId) {
     species = animal.species;
   }
 
-  const summary = document.createElement("p");
-  summary.setAttribute("class", "summary-box");
-  summary.textContent = `${species} | ${animal.age} years old`;
-
   const tagCloud = document.createElement("div");
   tagCloud.setAttribute("class", "tag-cloud");
   
@@ -345,13 +321,20 @@ function renderDetailPage(animalId) {
     tagCloud.append(tagDiv);
   });
 
-  detailBlock.append(name, training, summary, tagCloud)
+  const summary = document.createElement("p");
+  summary.setAttribute("class", "summary-box");
+  summary.textContent = `${species} | ${animal.age} years old`;
+
+  // Trainer card
+  const trainer = Storage.trainerDatabase.find(trainer => trainer.id === animal.trainerId);
+  const trainerCard = buildTrainerCard(trainer);
+
+  detailBlock.append(name, training, tagCloud, summary, trainerCard);
   detailWrapper.append(photo, detailBlock);
   wrapper.append(detailWrapper);
 }
 
 // Initial functions
-generateSampleData();
 renderPage();
-renderAnimalList(animalDatabase);
+renderAnimalList(Storage.animalDatabase);
 bindFilters();
