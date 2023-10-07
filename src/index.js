@@ -1,5 +1,5 @@
 import "./style.css";
-import Pet from "./pet";
+import Animal from "./animal";
 
 function initializePage() {
   const body = document.querySelector("body");
