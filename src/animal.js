@@ -1,7 +1,8 @@
 export default class Animal {
-  constructor({species, name, breed, age, training, tags, imageUrl}) {
+  constructor({species, gender,  name, breed, age, training, tags, imageUrl}) {
     this.id = Math.round(Math.random() * 1000000);
     this.name = name;
+    this.gender = gender;
     this.species = species;
     this.breed = breed;
     this.age = age;
