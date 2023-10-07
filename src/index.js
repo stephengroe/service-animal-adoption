@@ -13,16 +13,46 @@ const filters = new Map();
 
 function generateFilters(){
   filters.set("Species", ["Dog", "Cat", "Miniature Horse"]);
-  filters.set("Training", ["Certified Support Animal", "Emotional Support Animal"]);
-  filters.set("Age", ["0-1 years old", "1-3 years old", "3-5 years old", "5-10 years old", "10+ years old"]);
+  filters.set("Training", ["Certified Service Animal", "Emotional Support Animal"]);
+  filters.set("Age", ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]);
 }
 generateFilters();
 
 // Filter data
-function filterAnimals() {
-
+function filterAnimals(query) {
+  const filteredArray = animalDatabase.filter(animal => {
+    let result = false;
+    filters.forEach((value, key) => {
+      const lowerKey = key.toLowerCase();
+      if (animal[lowerKey] && animal[lowerKey] === query[lowerKey]) {
+        console.log(lowerKey);
+        result = true;
+      } else {
+        result = false;
+      }
+    });
+    return result;
+  });
+  
+  return filteredArray;
 }
 
+// Bind all filter functions to refresh the page on change
+function bindFilters() {
+  const filterDropdowns = document.querySelectorAll("#filter-bar select");
+  filterDropdowns.forEach(dropdown => {
+    dropdown.addEventListener("change", (e) => {
+      const query = {};
+      
+      filters.forEach((value, key) => {
+        key = key.toLowerCase();
+        query[key] = e.target.form[key].value;
+      });
+
+      updateDisplay(filterAnimals(query));
+    });
+  });
+}
 
 // Generate sample data
 const sampleTrainers = [
@@ -53,7 +83,7 @@ const sampleAnimals = [
     species: "Dog",
     name: "Fido",
     breed: "Terrier",
-    age: 4,
+    age: "4",
     training: "Certified Service Animal",
     tags: ["Good with kids", "Spayed/neutered", "Enjoys other pets", "Calm", "Hearing support", "Mobility support"],
     imageUrl: "https://images.pexels.com/photos/3361739/pexels-photo-3361739.jpeg",
@@ -62,7 +92,7 @@ const sampleAnimals = [
     species: "Dog",
     name: "Bear",
     breed: "Poodle",
-    age: 2,
+    age: "2",
     training: "Emotional Support Animal",
     tags: ["Friendly", "Spayed/neutered", "Anxiety support", "PTSD support"],
     imageUrl: "https://images.pexels.com/photos/3658120/pexels-photo-3658120.jpeg",
@@ -72,7 +102,7 @@ const sampleAnimals = [
     species: "Dog",
     name: "Fido",
     breed: "Terrier",
-    age: 4,
+    age: "4",
     training: "Certified Service Animal",
     tags: ["Good with kids", "Spayed/neutered", "Enjoys other pets", "Calm", "Hearing support", "Mobility support"],
     imageUrl: "https://images.pexels.com/photos/895259/pexels-photo-895259.jpeg",
@@ -81,7 +111,7 @@ const sampleAnimals = [
     species: "Dog",
     name: "Fido",
     breed: "Terrier",
-    age: 4,
+    age: "4",
     training: "Certified Service Animal",
     tags: ["Good with kids", "Spayed/neutered", "Enjoys other pets", "Calm", "Hearing support", "Mobility support"],
     imageUrl: "https://images.pexels.com/photos/3361739/pexels-photo-3361739.jpeg",
@@ -90,7 +120,7 @@ const sampleAnimals = [
     species: "Dog",
     name: "Bear",
     breed: "Poodle",
-    age: 2,
+    age: "2",
     training: "Emotional Support Animal",
     tags: ["Friendly", "Spayed/neutered", "Anxiety support", "PTSD support"],
     imageUrl: "https://images.pexels.com/photos/3658120/pexels-photo-3658120.jpeg",
@@ -100,7 +130,7 @@ const sampleAnimals = [
     species: "Dog",
     name: "Fido",
     breed: "Terrier",
-    age: 4,
+    age: "4",
     training: "Certified Service Animal",
     tags: ["Good with kids", "Spayed/neutered", "Enjoys other pets", "Calm", "Hearing support", "Mobility support"],
     imageUrl: "https://images.pexels.com/photos/895259/pexels-photo-895259.jpeg",
@@ -111,6 +141,11 @@ function generateSampleData() {
   sampleTrainers.forEach(trainer => {
     const newTrainer = new Trainer(trainer);
     trainerDatabase.push(newTrainer);
+  });
+
+  sampleAnimals.forEach(animal => {
+    const newAnimal = new Animal(animal);
+    animalDatabase.push(newAnimal);
   });
 }
 
@@ -163,7 +198,7 @@ function generateNavBar() {
 }
 
 function generateFilterBar() {
-  const filterBar = document.createElement("div");
+  const filterBar = document.createElement("form");
   filterBar.setAttribute("id", "filter-bar");
 
   filters.forEach((options, filter) => {
@@ -218,10 +253,23 @@ function generateFooter() {
   return footer;
 }
 
-function updateDisplay(){
+function updateDisplay(animalArray){
   const wrapper = document.querySelector("#wrapper");
 
-  const animalContainer = buildAnimalContainer(sampleAnimals);
+  // Clear wrapper
+  while(wrapper.firstChild) {
+    wrapper.removeChild(wrapper.firstChild);
+  }
+
+  let animalContainer;
+
+  if (animalArray.length > 0) {
+    animalContainer = buildAnimalContainer(animalArray);
+  } else {
+    animalContainer = document.createElement("h2");
+    animalContainer.setAttribute("class", "no-results");
+    animalContainer.textContent = "No animals match your search criteria. Try broadening your search!";
+  }
 
   const trainerHeader = document.createElement("h2");
   trainerHeader.textContent = "Featured Trainers";
@@ -311,4 +359,5 @@ function buildAnimalContainer(array) {
 // Initial functions
 generateSampleData();
 initializePage();
-updateDisplay();
+updateDisplay(animalDatabase);
+bindFilters();
