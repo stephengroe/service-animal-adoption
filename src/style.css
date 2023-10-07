@@ -59,12 +59,19 @@ h3 {
 
 #nav-bar {
   background-color: white;
-  padding: 1.5em;
+  padding: 1.5em 2.5em;
   display: flex;
 }
 
 #nav-bar .logo {
   margin-right: auto;
+  background-image: url("./images/logo.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  height: 35px;
+  width: 150px;
 }
 
 #nav-bar .nav-menu {
@@ -72,6 +79,7 @@ h3 {
   padding: 0;
   display: flex;
   gap: 1.5em;
+  align-items: center;
 }
 
 #nav-bar .nav-menu li {
@@ -99,8 +107,8 @@ h3 {
 
   display: flex;
   flex-flow: row;
-  justify-content: flex-start;
-  gap: 2em;
+  justify-content: center;
+  gap: 5em;
 }
 
 #filter-bar .filter-container {
@@ -309,10 +317,12 @@ h2 {
   padding: 5rem;
   display: flex;
   box-sizing: border-box;
+  position: relative;
 }
 
 #footer .logo {
   margin-right: auto;
+  background-image: url("./images/logo.png");
 }
 
 #footer .nav-menu {
@@ -337,4 +347,15 @@ h2 {
 #footer .nav-menu li a:hover {
   color: var(--brand-light-green);
   transition: all 200ms;
+}
+
+#footer #copyright {
+  font-size: 0.8em;
+  color: white;
+  font-weight: 300;
+  position: absolute;
+  bottom: -10px;
+  width: 100%;
+  text-align: center;
+  bottom: 5px;
 }

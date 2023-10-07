@@ -63,7 +63,6 @@ function generateNavBar() {
 
   const logo = document.createElement("div");
   logo.setAttribute("class", "logo");
-  logo.textContent = "PupAbility";
 
   const menu = document.createElement("ul");
   menu.setAttribute("class", "nav-menu");
@@ -122,7 +121,6 @@ function generateFooter() {
 
   const logo = document.createElement("div");
   logo.setAttribute("class", "logo");
-  logo.textContent = "PupAbility";
 
   const menu = document.createElement("ul");
   menu.setAttribute("class", "menu");
@@ -139,7 +137,12 @@ function generateFooter() {
     menu.append(li);
   });
 
-  footer.append(logo, menu);
+  const copyright = document.createElement("p");
+  copyright.setAttribute("id", "copyright");
+  const year = new Date().getFullYear()
+  copyright.textContent = `© ${year} | Made with ♥ at Hacks for Humanity 2023`;
+
+  footer.append(logo, menu, copyright);
 
   return footer;
 }
