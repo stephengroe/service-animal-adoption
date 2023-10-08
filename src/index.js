@@ -9,7 +9,11 @@ import tokens from "../tokens";
 function filterAnimals(query) {
   const filteredArray = Storage.animalDatabase.filter(animal => {
     const result = [];
+
     Storage.filters.forEach((value, key) => {
+      console.log(`value: ${value}, key: ${key}`);
+      if (value === "All") return true; // For "all" value, skip the test
+
       const lowerKey = key.toLowerCase();
       if (animal[lowerKey] && animal[lowerKey] === query[lowerKey]) {
         result.push(true);
@@ -17,6 +21,7 @@ function filterAnimals(query) {
         result.push(false);
       }
     });
+    
     return result.every(value => value);
   });
   
@@ -26,15 +31,19 @@ function filterAnimals(query) {
 // Bind all filter functions to refresh the page on change
 function bindFilters() {
   const filterDropdowns = document.querySelectorAll("#filter-bar select");
+
   filterDropdowns.forEach(dropdown => {
     dropdown.addEventListener("change", (e) => {
       const query = {};
       
       Storage.filters.forEach((value, key) => {
         const lowerKey = key.toLowerCase();
-        query[lowerKey] = e.target.form[lowerKey].value;
+        const select = Array.from(filterDropdowns).find(element => element.dataset.filter === lowerKey);
+        query[lowerKey] = select.value;
       });
 
+      Storage.query = query;
+      console.log(Storage.query);
       renderAnimalList(filterAnimals(query));
     });
   });
@@ -106,18 +115,24 @@ function generateFilterBar() {
   Storage.filters.forEach((options, filter) => {
     const container = document.createElement("div");
     container.setAttribute("class", "filter-container");
+    const value = filter.toLowerCase();
 
     const label = document.createElement("label");
-    label.setAttribute("for", filter.toLowerCase());
+    label.setAttribute("for", value);
     label.textContent = filter;
 
     const filterDropdown = document.createElement("select");
-    filterDropdown.setAttribute("id", filter.toLowerCase());
+    filterDropdown.setAttribute("id", value);
+    filterDropdown.dataset.filter = value;
 
     options.forEach(option => {
       const optionElement = document.createElement("option");
       optionElement.textContent = option;
       filterDropdown.append(optionElement);
+
+      if (Storage.query[value] === option) {
+        optionElement.setAttribute("selected", true);
+      }
     });
     
     container.append(label, filterDropdown);
@@ -185,7 +200,6 @@ function bindZipButton() {
     } else {
       Storage.location = "Somewhere!";
       Storage.nearZipCodes = ['85213'];
-      console.log("Processing");
       
       renderPage();
       renderAnimalList(Storage.animalDatabase);
@@ -474,6 +488,16 @@ function renderDetailPage(animalId) {
   detailBlock.append(name, training, summary, description, tagCloud, trainerCard);
   detailWrapper.append(photo, detailBlock);
   wrapper.append(detailWrapper);
+  bindBackButton();
+}
+
+function bindBackButton() {
+  const backButton = document.querySelector("#back-button");
+  backButton.addEventListener("click", () => {
+    renderPage();
+    renderAnimalList(Storage.query);
+  });
+
 }
 
 // Initial functions
