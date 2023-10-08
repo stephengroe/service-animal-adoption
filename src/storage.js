@@ -6,7 +6,7 @@ const Storage = {
   animalDatabase: [],
   trainerDatabase: [],
   filters: new Map(),
-  location: "Nowhere, Nowhere",
+  location: "Enter location",
   nearZipCodes: [],
   query: {
     gender: "Male",

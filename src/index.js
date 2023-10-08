@@ -111,8 +111,7 @@ function generateFilterBar() {
   filterBar.setAttribute("id", "filter-bar");
 
   const zipCode = document.createElement("div");
-  zipCode.setAttribute("class", "zip-code");
-  zipCode.textContent = Storage.location || "No location set";
+  zipCode.setAttribute("id", "zip-code");
 
   filterBar.append(zipCode);
 
@@ -188,7 +187,7 @@ function renderHomePage() {
 
 let zipPending = true;
 
-function bindZipButton() {
+async function bindZipButton() {
   const zipButton = document.querySelector("#zip-button");
 
   zipButton.addEventListener("click", (e) => {
@@ -202,17 +201,12 @@ function bindZipButton() {
         zipCodeElement.classList.remove("error");
       }, "150");
     } else {
-      Storage.location = "Somewhere!";
-      Storage.nearZipCodes = ['85213'];
-      
-      renderPage();
-      renderAnimalList(Storage.animalDatabase);
-      bindFilters();
-
-      // processZipCode(zipCodeElement.value).then(() => {
-      //   zipPending = false; // Prevent overuse of API credits!
-      //   renderPage();
-      // }); 
+      processZipCode(zipCodeElement.value)
+      .then(() => {
+        renderPage();
+        renderAnimalList(Storage.animalDatabase);
+        bindFilters();
+      });
     }
   });
 }
@@ -222,7 +216,9 @@ async function processZipCode(zipCode) {
   if (zipPending) {
     getLocation(zipCode).then(response => {
       Storage.location = response;
-  
+      const zipCode = document.querySelector("#zip-code");
+      zipCode.textContent = response;
+      
       getNearbyZipCodes(zipCode)
         .then(response => {
           Storage.nearZipCodes = response;
