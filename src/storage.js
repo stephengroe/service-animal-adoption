@@ -15,10 +15,10 @@ const Storage = {
   },
 
   generateFilters() {
-    this.filters.set("Species", ["All", "Dog", "Cat", "Miniature Horse"]);
-    this.filters.set("Training", ["All", "Certified Service Animal", "Certified Emotional Support Animal"]);
-    this.filters.set("Age", ["All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]);
-    this.filters.set("Gender", ["All", "Male", "Female"]);
+    this.filters.set("Species", ["Dog", "Cat", "Miniature Horse"]);
+    this.filters.set("Training", ["Certified Service Animal", "Certified Emotional Support Animal"]);
+    // this.filters.set("Age", ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]);
+    this.filters.set("Gender", ["Male", "Female"]);
   }
 }
 

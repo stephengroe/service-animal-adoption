@@ -8,16 +8,10 @@ import tokens from "../tokens";
 // Filter data
 function filterAnimals(query) {
   const filteredArray = Storage.animalDatabase.filter(animal => {
-
-    console.log(Storage.query);
-    const filterMap = Object.entries(Storage.query);
-    console.log(filterMap);
-
-    const result = [];
+    let result = [];
 
     Storage.filters.forEach((value, key) => {
-      if (value === "All") return true; // For "all" value, skip the test
-
+      // if (value === "All") return true; // For "all" value, skip the test
       const lowerKey = key.toLowerCase();
       if (animal[lowerKey] && animal[lowerKey] === query[lowerKey]) {
         result.push(true);
@@ -47,7 +41,6 @@ function bindFilters() {
       });
 
       Storage.query = query;
-      console.log(Storage.query);
       renderAnimalList(filterAnimals(query));
     });
   });
@@ -63,7 +56,7 @@ function renderPage() {
   }
 
   // Create elements
-  const navBar = generateNavBar(true);
+  const navBar = generateNavBar();
   const footer = generateFooter();
 
   // Create wrapper element
@@ -71,6 +64,7 @@ function renderPage() {
   wrapper.setAttribute("id", "wrapper");
 
   body.append(navBar, wrapper, footer);
+  bindFilters();
 }
 
 function generateNavBar() {
@@ -112,6 +106,7 @@ function generateFilterBar() {
 
   const zipCode = document.createElement("div");
   zipCode.setAttribute("id", "zip-code");
+  zipCode.textContent = Storage.location;
 
   filterBar.append(zipCode);
 
@@ -241,7 +236,7 @@ async function getNearbyZipCodes(zipCode) {
     .then(location => location.json());
 
   let nearbyZips = response.results;
-  nearbyZips = nearbyZips.map(location => location.code);
+  // nearbyZips = nearbyZips.map(location => location.code);
 
   return nearbyZips;
 }
@@ -495,9 +490,8 @@ function bindBackButton() {
   const backButton = document.querySelector("#back-button");
   backButton.addEventListener("click", () => {
     renderPage();
-    renderAnimalList(Storage.query);
+    renderAnimalList(filterAnimals(Storage.query));
   });
-
 }
 
 // Initial functions
