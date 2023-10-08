@@ -43,6 +43,11 @@ function bindFilters() {
 // Render functions
 function renderPage() {
   const body = document.querySelector("body");
+  body.classList.remove("hero");
+
+  while(body.firstChild) {
+    body.removeChild(body.firstChild);
+  }
 
   // Create elements
   const navBar = generateNavBar(true);
@@ -94,7 +99,7 @@ function generateFilterBar() {
 
   const zipCode = document.createElement("div");
   zipCode.setAttribute("class", "zip-code");
-  zipCode.textContent = Storage.location;
+  zipCode.textContent = Storage.location || "No location set";
 
   filterBar.append(zipCode);
 
@@ -149,57 +154,83 @@ function renderHomePage() {
 
   const zipInput = document.createElement("input");
   zipInput.setAttribute("type", "number");
-  zipInput.setAttribute("max", "99999");
-  zipInput.setAttribute("value", "null");
+  zipInput.setAttribute("id", "zip-input")
   zipInput.setAttribute("placeholder", "ZIP code");
 
   const zipButton = document.createElement("button");
+  zipButton.setAttribute("id", "zip-button");
   zipButton.textContent = "Search";
 
   cta.append(zipInput, zipButton);
   heroContainer.append(heading, subheading, cta);
   wrapper.append(heroContainer);
+  bindZipButton();
 }
 
-// let zipPending = true;
+let zipPending = true;
 
+function bindZipButton() {
+  const zipButton = document.querySelector("#zip-button");
 
-// let zipQuery = "33884";
+  zipButton.addEventListener("click", (e) => {
+    e.preventDefault();
 
-// if (zipPending) {
-//   getLocation(zipQuery).then(response => {
-//     Storage.location = response;
-//     zipCode.textContent = Storage.location;
+    const zipCodeElement = document.querySelector("#zip-input");
 
-//     getNearbyZipCodes(zipQuery)
-//       .then(response => {
-//         Storage.nearZipCodes = response;
-//       });
-//   });
+    if (zipCodeElement.value.length !== 5) {
+      zipCodeElement.classList.add("error");
+      setTimeout(() => {
+        zipCodeElement.classList.remove("error");
+      }, "150");
+    } else {
+      Storage.location = "Somewhere!";
+      Storage.nearZipCodes = ['85213'];
+      console.log("Processing");
+      
+      renderPage();
+      renderAnimalList(Storage.animalDatabase);
+      bindFilters();
 
-//   zipPending = false;
-// }
+      // processZipCode(zipCodeElement.value).then(() => {
+      //   zipPending = false; // Prevent overuse of API credits!
+      //   renderPage();
+      // }); 
+    }
+  });
+}
 
+// Get information with ZIP code API
+async function processZipCode(zipCode) {
+  if (zipPending) {
+    getLocation(zipCode).then(response => {
+      Storage.location = response;
+  
+      getNearbyZipCodes(zipCode)
+        .then(response => {
+          Storage.nearZipCodes = response;
+        });
+    });
+  }
+}
 
+async function getLocation(zipCode) {
+  const response = await fetch(`https://app.zipcodebase.com/api/v1/search?apikey=${tokens.ZIP_CODEBASE_KEY}&codes=${zipCode}&country=us`, 
+    {mode: 'cors'})
+    .then(location => location.json());
 
-// async function getLocation(zipCode) {
-//   const response = await fetch(`https://app.zipcodebase.com/api/v1/search?apikey=${tokens.ZIP_CODEBASE_KEY}&codes=${zipCode}&country=us`, 
-//     {mode: 'cors'})
-//     .then(location => location.json());
+  return `${response.results[zipCode][0].city}, ${response.results[zipCode][0].state_code}`;
+}
 
-//   return `${response.results[zipCode][0].city}, ${response.results[zipCode][0].state_code}`;
-// }
+async function getNearbyZipCodes(zipCode) {
+  const response = await fetch(`https://app.zipcodebase.com/api/v1/radius?apikey=${tokens.ZIP_CODEBASE_KEY}&code=${zipCode}&radius=50&country=us&unit=miles`,
+    {mode: 'cors'})
+    .then(location => location.json());
 
-// async function getNearbyZipCodes(zipCode) {
-//   const response = await fetch(`https://app.zipcodebase.com/api/v1/radius?apikey=${tokens.ZIP_CODEBASE_KEY}&code=${zipCode}&radius=50&country=us&unit=miles`,
-//     {mode: 'cors'})
-//     .then(location => location.json());
+  let nearbyZips = response.results;
+  nearbyZips = nearbyZips.map(location => location.code);
 
-//   let nearbyZips = response.results;
-//   nearbyZips = nearbyZips.map(location => location.code);
-
-//   return nearbyZips;
-// }
+  return nearbyZips;
+}
 
 function generateFooter() {
   const footer = document.createElement("div");
@@ -448,5 +479,3 @@ function renderDetailPage(animalId) {
 // Initial functions
 renderPage();
 renderHomePage();
-// renderAnimalList(Storage.animalDatabase);
-// bindFilters();

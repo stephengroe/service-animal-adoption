@@ -50,11 +50,12 @@ h3 {
 #top-bar {
   position: sticky;
   margin-bottom: 3rem;
-  /* box-shadow: var(--shadow-elevation-medium); */
+  box-shadow: var(--shadow-elevation-medium);
   box-sizing: border-box;
   width: 100%;
   top: 0;
   left: 0;
+  z-index: 999;
 }
 
 #nav-bar {
@@ -232,6 +233,10 @@ h3 {
   box-shadow: var(--shadow-elevation-medium);
   transition: all var(--transition-speed);
   outline: none;
+}
+
+.hero .cta button:active {
+  transform: translateY(3px);
 }
 
 /* Remove number clicker arrows in all browsers */
@@ -476,9 +481,11 @@ h2 {
   box-sizing: border-box;
   position: relative;
   min-height: 100px;
+  z-index: 999;
+  min-height: 150px
 }
 
-#footer::before {
+/* #footer::before {
   width: 100%;
   content: '';
   border-radius: 100%;
@@ -489,7 +496,7 @@ h2 {
   box-shadow: var(--shadow-elevation-medium);
   z-index: -999;
   display: block;
-}
+} */
 
 #footer .logo {
   margin-right: auto;
@@ -570,5 +577,32 @@ h2 {
   .hero .cta input,
   .hero .cta button {
     min-width: 0px;
+  }
+}
+
+
+/* Error shake animation */
+.error {
+  animation: shake 150ms;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0, 0);
+  }
+  13% {
+    transform: translate(3px, 0);
+  }
+  38% {
+    transform: translate(-3px, 0);
+  }
+  63% {
+    transform: translate(3px, 0);
+  }
+  87% {
+    transform: translate(-3px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
   }
 }
