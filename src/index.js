@@ -3,6 +3,7 @@ import Animal from "./animal";
 import Trainer from "./trainer";
 import {sampleTrainers, sampleAnimals} from "./sample-data";
 import Storage from "./storage";
+import tokens from "../tokens";
 
 // Filter data
 function filterAnimals(query) {
@@ -88,13 +89,16 @@ function generateNavBar() {
 }
 
 function generateFilterBar() {
-  const filterBar = document.createElement("form");
+  const filterBar = document.createElement("div");
   filterBar.setAttribute("id", "filter-bar");
 
   const zipCode = document.createElement("div");
   zipCode.setAttribute("class", "zip-code");
-  const location = getLocation(Storage.zipCode);
-  zipCode.textContent = location;
+
+  getLocation(Storage.zipCode).then(response => {
+    zipCode.textContent = response;
+  });
+
   filterBar.append(zipCode);
 
   Storage.filters.forEach((options, filter) => {
@@ -121,8 +125,12 @@ function generateFilterBar() {
   return filterBar;
 }
 
-function getLocation(zipCode) {
+async function getLocation(zipCode) {
+  const response = await fetch(`https://app.zipcodebase.com/api/v1/search?apikey=${tokens.ZIP_CODEBASE_KEY}&codes=${zipCode}&country=us`, 
+    {mode: 'cors'})
+    .then(location => location.json());
 
+  return `${response.results[zipCode][0].city}, ${response.results[zipCode][0].state_code}`;
 }
 
 function generateFooter() {
