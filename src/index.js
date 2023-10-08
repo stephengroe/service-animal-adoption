@@ -88,30 +88,13 @@ function generateNavBar() {
   return topBarWrapper;
 }
 
-let zipPending = true;
-
 function generateFilterBar() {
   const filterBar = document.createElement("div");
   filterBar.setAttribute("id", "filter-bar");
 
   const zipCode = document.createElement("div");
   zipCode.setAttribute("class", "zip-code");
-
-  let zipQuery = "33884";
-
-  if (zipPending) {
-    getLocation(zipQuery).then(response => {
-      Storage.location = response;
-      zipCode.textContent = Storage.location;
-
-      getNearbyZipCodes(zipQuery)
-        .then(response => {
-          Storage.nearZipCodes = response;
-        });
-    });
-
-    zipPending = false;
-  }
+  zipCode.textContent = Storage.location;
 
   filterBar.append(zipCode);
 
@@ -139,24 +122,84 @@ function generateFilterBar() {
   return filterBar;
 }
 
-async function getLocation(zipCode) {
-  const response = await fetch(`https://app.zipcodebase.com/api/v1/search?apikey=${tokens.ZIP_CODEBASE_KEY}&codes=${zipCode}&country=us`, 
-    {mode: 'cors'})
-    .then(location => location.json());
+// Home page display
+function renderHomePage() {
+  // Remove filter bar
+  const filterBar = document.querySelector("#filter-bar");
+  filterBar.remove();
 
-  return `${response.results[zipCode][0].city}, ${response.results[zipCode][0].state_code}`;
+  // Add hero wrapper
+  const body = document.querySelector("body");
+  body.classList.add("hero");
+
+  const wrapper = document.querySelector("#wrapper");
+
+  const heroContainer = document.createElement("div");
+  heroContainer.setAttribute("class", "hero-container");
+
+  // Add heading and call to action
+  const heading = document.createElement("h1");
+  heading.textContent = "Find your future companion";
+
+  const subheading = document.createElement("h2");
+  subheading.textContent = "Browse registered service and support animals near you";
+
+  const cta = document.createElement("form");
+  cta.setAttribute("class", "cta");
+
+  const zipInput = document.createElement("input");
+  zipInput.setAttribute("type", "number");
+  zipInput.setAttribute("max", "99999");
+  zipInput.setAttribute("value", "null");
+  zipInput.setAttribute("placeholder", "ZIP code");
+
+  const zipButton = document.createElement("button");
+  zipButton.textContent = "Search";
+
+  cta.append(zipInput, zipButton);
+  heroContainer.append(heading, subheading, cta);
+  wrapper.append(heroContainer);
 }
 
-async function getNearbyZipCodes(zipCode) {
-  const response = await fetch(`https://app.zipcodebase.com/api/v1/radius?apikey=${tokens.ZIP_CODEBASE_KEY}&code=${zipCode}&radius=50&country=us&unit=miles`,
-    {mode: 'cors'})
-    .then(location => location.json());
+// let zipPending = true;
 
-  let nearbyZips = response.results;
-  nearbyZips = nearbyZips.map(location => location.code);
 
-  return nearbyZips;
-}
+// let zipQuery = "33884";
+
+// if (zipPending) {
+//   getLocation(zipQuery).then(response => {
+//     Storage.location = response;
+//     zipCode.textContent = Storage.location;
+
+//     getNearbyZipCodes(zipQuery)
+//       .then(response => {
+//         Storage.nearZipCodes = response;
+//       });
+//   });
+
+//   zipPending = false;
+// }
+
+
+
+// async function getLocation(zipCode) {
+//   const response = await fetch(`https://app.zipcodebase.com/api/v1/search?apikey=${tokens.ZIP_CODEBASE_KEY}&codes=${zipCode}&country=us`, 
+//     {mode: 'cors'})
+//     .then(location => location.json());
+
+//   return `${response.results[zipCode][0].city}, ${response.results[zipCode][0].state_code}`;
+// }
+
+// async function getNearbyZipCodes(zipCode) {
+//   const response = await fetch(`https://app.zipcodebase.com/api/v1/radius?apikey=${tokens.ZIP_CODEBASE_KEY}&code=${zipCode}&radius=50&country=us&unit=miles`,
+//     {mode: 'cors'})
+//     .then(location => location.json());
+
+//   let nearbyZips = response.results;
+//   nearbyZips = nearbyZips.map(location => location.code);
+
+//   return nearbyZips;
+// }
 
 function generateFooter() {
   const footer = document.createElement("div");
@@ -404,5 +447,6 @@ function renderDetailPage(animalId) {
 
 // Initial functions
 renderPage();
-renderAnimalList(Storage.animalDatabase);
-bindFilters();
+renderHomePage();
+// renderAnimalList(Storage.animalDatabase);
+// bindFilters();

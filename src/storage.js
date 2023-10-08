@@ -6,7 +6,7 @@ const Storage = {
   animalDatabase: [],
   trainerDatabase: [],
   filters: new Map(),
-  location: null,
+  location: "Nowhere, Nowhere",
   nearZipCodes: [],
 
   generateFilters() {
