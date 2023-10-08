@@ -91,6 +91,12 @@ function generateFilterBar() {
   const filterBar = document.createElement("form");
   filterBar.setAttribute("id", "filter-bar");
 
+  const zipCode = document.createElement("div");
+  zipCode.setAttribute("class", "zip-code");
+  const location = getLocation(Storage.zipCode);
+  zipCode.textContent = location;
+  filterBar.append(zipCode);
+
   Storage.filters.forEach((options, filter) => {
     const container = document.createElement("div");
     container.setAttribute("class", "filter-container");
@@ -113,6 +119,10 @@ function generateFilterBar() {
   });
 
   return filterBar;
+}
+
+function getLocation(zipCode) {
+
 }
 
 function generateFooter() {

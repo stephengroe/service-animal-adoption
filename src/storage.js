@@ -6,6 +6,7 @@ const Storage = {
   animalDatabase: [],
   trainerDatabase: [],
   filters: new Map(),
+  zipCode: null,
 
   generateFilters() {
     this.filters.set("Species", ["Dog", "Cat", "Miniature Horse"]);
