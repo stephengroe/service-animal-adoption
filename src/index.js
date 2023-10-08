@@ -88,6 +88,8 @@ function generateNavBar() {
   return topBarWrapper;
 }
 
+let zipPending = true;
+
 function generateFilterBar() {
   const filterBar = document.createElement("div");
   filterBar.setAttribute("id", "filter-bar");
@@ -95,9 +97,21 @@ function generateFilterBar() {
   const zipCode = document.createElement("div");
   zipCode.setAttribute("class", "zip-code");
 
-  getLocation(Storage.zipCode).then(response => {
-    zipCode.textContent = response;
-  });
+  let zipQuery = "33884";
+
+  if (zipPending) {
+    getLocation(zipQuery).then(response => {
+      Storage.location = response;
+      zipCode.textContent = Storage.location;
+
+      getNearbyZipCodes(zipQuery)
+        .then(response => {
+          Storage.nearZipCodes = response;
+        });
+    });
+
+    zipPending = false;
+  }
 
   filterBar.append(zipCode);
 
@@ -131,6 +145,17 @@ async function getLocation(zipCode) {
     .then(location => location.json());
 
   return `${response.results[zipCode][0].city}, ${response.results[zipCode][0].state_code}`;
+}
+
+async function getNearbyZipCodes(zipCode) {
+  const response = await fetch(`https://app.zipcodebase.com/api/v1/radius?apikey=${tokens.ZIP_CODEBASE_KEY}&code=${zipCode}&radius=50&country=us&unit=miles`,
+    {mode: 'cors'})
+    .then(location => location.json());
+
+  let nearbyZips = response.results;
+  nearbyZips = nearbyZips.map(location => location.code);
+
+  return nearbyZips;
 }
 
 function generateFooter() {
