@@ -8,10 +8,14 @@ import tokens from "../tokens";
 // Filter data
 function filterAnimals(query) {
   const filteredArray = Storage.animalDatabase.filter(animal => {
+
+    console.log(Storage.query);
+    const filterMap = Object.entries(Storage.query);
+    console.log(filterMap);
+
     const result = [];
 
     Storage.filters.forEach((value, key) => {
-      console.log(`value: ${value}, key: ${key}`);
       if (value === "All") return true; // For "all" value, skip the test
 
       const lowerKey = key.toLowerCase();
@@ -21,7 +25,7 @@ function filterAnimals(query) {
         result.push(false);
       }
     });
-    
+
     return result.every(value => value);
   });
   
