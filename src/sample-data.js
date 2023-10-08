@@ -76,7 +76,7 @@ const sampleAnimals = [
   {
     species: "Dog",
     gender: "Male",
-    name: "Captain Hook",
+    name: "Captain",
     breed: "Shiba Inu",
     age: "2",
     training: "Certified Service Animal",

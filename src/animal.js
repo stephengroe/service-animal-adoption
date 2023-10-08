@@ -8,7 +8,7 @@ export default class Animal {
     this.age = age;
     this.training = training;
     this.tags = tags;
-    this.imageUrl = `./images/${name.toLowerCase()}.jpg`;
+    this.imageUrl = `https://www.thoughtfulgrowth.com/pupability-images/${name.toLowerCase()}.jpg`;
     this.trainerId = trainerId;
   }
 }
