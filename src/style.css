@@ -100,8 +100,7 @@ h3 {
 
   display: flex;
   flex-flow: row;
-  justify-content: center;
-  gap: 5em;
+  justify-content: space-around;
 }
 
 /* form#filter-bar::after {
@@ -160,8 +159,7 @@ h3 {
   transition: all var(--transition-speed);
 }
 
-.animal-container .animal-card:hover,
-.trainer-card:hover {
+.animal-container .animal-card:hover {
   cursor: pointer;
   box-shadow: var(--shadow-elevation-medium);
 
@@ -236,6 +234,8 @@ h3 {
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
+  max-width: 60%;
+  margin: 2em auto;
 }
 
 .trainer-card .photo,
@@ -258,6 +258,7 @@ h3 {
 .detail-wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
 
   justify-content: space-between;
   gap: 2em;
@@ -309,6 +310,27 @@ h3 {
   margin-bottom: 0px;
 }
 
+button.contact-button {
+  font-size: 1em;
+  padding: 1em 2em;
+  background-color: var(--brand-dark-green);
+  border-radius: var(--border-radius);
+  border: none;
+  color: white;
+  font-weight: 300;
+  font-family: 'Karla';
+  cursor: pointer;
+  box-shadow: var(--shadow-elevation-low);
+
+  transition: all var(--transition-speed);
+}
+
+button.contact-button:hover {
+  box-shadow: var(--shadow-elevation-medium);
+
+  transition: all var(--transition-speed);
+}
+
 button#back-button {
   font-size: 1em;
   background: none;
@@ -318,6 +340,7 @@ button#back-button {
   cursor: pointer;
   border: none;
 }
+
 
 
 
@@ -348,7 +371,7 @@ h2 {
 }
 
 #footer::before {
-  width: 120%;
+  width: 100%;
   content: '';
   border-radius: 100%;
   background-color: var(--brand-purple);
@@ -398,4 +421,22 @@ h2 {
   width: 100%;
   text-align: center;
   bottom: 5px;
+}
+
+@media (max-width: 900px) {
+  .detail-wrapper {
+    grid-template-rows: 1fr 2fr;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  #filter-bar {
+    flex-flow: column;
+    gap: 0px;
+  }
+
+  #nav-bar ul.nav-menu li:first-child {
+    display: none;
+  }
 }

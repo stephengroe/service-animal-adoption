@@ -140,7 +140,7 @@ function generateFooter() {
   const copyright = document.createElement("p");
   copyright.setAttribute("id", "copyright");
   const year = new Date().getFullYear()
-  copyright.textContent = `© ${year} | Made with ♥ at Hacks for Humanity 2023`;
+  copyright.textContent = `© ${year} | Made with ♥ at Hacks for Humanity`;
 
   footer.append(copyright);
 
@@ -342,7 +342,7 @@ function renderDetailPage(animalId) {
 
   const price = document.createElement("h3");
   price.setAttribute("class", "price");
-  price.textContent = "$5,000";
+  price.textContent = "$15,000";
 
   const contactButton = document.createElement("button");
   contactButton.setAttribute("class", "contact-button");
@@ -351,9 +351,10 @@ function renderDetailPage(animalId) {
   contact.append(price, contactButton);
 
   const trainerCard = buildTrainerCard(trainer);
-  trainerInfo.append(contact, trainerCard);
+  trainerCard.append(price, contactButton);
+  // trainerInfo.append(contact, trainerCard);
 
-  detailBlock.append(name, training, summary, description, tagCloud, trainerInfo);
+  detailBlock.append(name, training, summary, description, tagCloud, trainerCard);
   detailWrapper.append(photo, detailBlock);
   wrapper.append(detailWrapper);
 }
