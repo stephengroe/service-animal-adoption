@@ -104,7 +104,7 @@ h3 {
   gap: 5em;
 }
 
-form#filter-bar::after {
+/* form#filter-bar::after {
   width: 120%;
   content: '';
   border-radius: 100%;
@@ -114,7 +114,7 @@ form#filter-bar::after {
   height: 60px;
   box-shadow: var(--shadow-elevation-low);
   z-index: -999;
-}
+} */
 
 #filter-bar .filter-container {
   display: flex;
@@ -205,6 +205,7 @@ form#filter-bar::after {
   align-items: center;
   justify-content: center;
   gap: 0.25em;
+  margin-bottom: 1em;
 }
 
 .tag-cloud .tag {
@@ -276,6 +277,10 @@ form#filter-bar::after {
 
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-elevation-medium);
+}
+
+.detail-block {
+  gap: 1em;
 }
 
 .detail-block .summary-box {

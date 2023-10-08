@@ -325,7 +325,7 @@ function renderDetailPage(animalId) {
 
   const summary = document.createElement("p");
   summary.setAttribute("class", "summary-box");
-  summary.textContent = `${species} | ${animal.age} years old`;
+  summary.textContent = `${species} | ${animal.gender} | ${animal.age} years old`;
 
   const description = document.createElement("p");
   description.setAttribute("class", "description");
@@ -340,9 +340,9 @@ function renderDetailPage(animalId) {
   const contact = document.createElement("div");
   contact.setAttribute("class", "contact-card");
 
-  const price = document.createElement("p");
+  const price = document.createElement("h3");
   price.setAttribute("class", "price");
-  price.textContent = "$25,000";
+  price.textContent = "$5,000";
 
   const contactButton = document.createElement("button");
   contactButton.setAttribute("class", "contact-button");

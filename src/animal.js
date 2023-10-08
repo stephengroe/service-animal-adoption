@@ -8,7 +8,7 @@ export default class Animal {
     this.age = age;
     this.training = training;
     this.tags = tags;
-    this.imageUrl = imageUrl;
+    this.imageUrl = imageUrl || "https://images.pexels.com/photos/2023384/pexels-photo-2023384.jpeg";
     this.trainerId = trainerId;
   }
 }
