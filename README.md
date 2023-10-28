@@ -1,8 +1,8 @@
 # PupAbility: Service Animal Adoption App
 
-**Demo of a marketplace app to connect service animals with their future handlers**
+**Marketplace to connect service animals with those in need**
 
-Our team built this app in 36 hours as a submission for [Hacks for Humanity 2023](https://www.hacksforhumanity.io/), where it took 2nd place. I worked as the sole developer in a five-person multi-disciplinary team.
+Our team built this app in 36 hours as a submission for [Hacks for Humanity 2023](https://www.hacksforhumanity.io/), where it took 2nd place. I worked as the sole app developer in a five-person multi-disciplinary team.
 
 - **Live demo:** [https://stephengroe.github.io/service-animal-adoption/](https://stephengroe.github.io/service-animal-adoption/)
 - **Built with:** Vanilla JS, HTML5, CSS3, Webpack
@@ -36,8 +36,10 @@ Because this demo was built in a single weekend, it needs several upgrades to fu
 
 * **Trainer details.** I'd like to add additional details on trainer information, including a page for each trainer and a listing of their registered service animals.
 
-* **ZIP sorting.** ZIP code sorting hasn't been implemented, since nearly all searches would return zero results! The fetched data is collected, but would need to be added to the search feature.
+* **ZIP sorting.** ZIP code sorting hasn't been implemented. Since since there are only a handful of demo animals, nearly all searches would return zero results! Nearby ZIP codes are collected, but aren't included in a search feature yet.
 
 ## Acknowledgements
 
-Special thanks to the rest of our Hacks for Humanity team: Stephanie Bucklin, Eric Covino, Anved Puri, and Bryan Rojas. And of course, the organizers and sponsors of Hacks for Humanity who made the event possible!
+Special thanks to the rest of our Hacks for Humanity team: Stephanie Bucklin, Eric Covino, Anved Puri, and Bryan Rojas. Thanks also to our mentors during the hackathon.
+
+And of course, the organizers and sponsors of the hackathon who made it all possible!
